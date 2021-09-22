@@ -42,7 +42,7 @@ const generateStudents = (n, cities) => {
                 precision: 0.1,
             }),
             gender: randomNumber >= 0.5 ? 'male' : 'female',
-            city: cities[cityIndex].name,
+            city: cities[cityIndex].code,
             createdAt: Date.now(),
             updatedAt: Date.now(),
         });
