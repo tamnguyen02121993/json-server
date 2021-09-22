@@ -1,7 +1,7 @@
 const faker = require('faker');
 const fs = require('fs');
 
-// Set locale to use Vietnamese
+// Set locale to use English
 faker.locale = 'en';
 
 const generateCities = (n) => {
@@ -36,9 +36,10 @@ const generateStudents = (n, cities) => {
                 min: 18,
                 max: 60
             }),
-            mark: faker.datatype.number({
+            mark: faker.datatype.float({
                 min: 0,
                 max: 10,
+                precision: 0.1,
             }),
             gender: randomNumber >= 0.5 ? 'male' : 'female',
             city: cities[cityIndex].name,
