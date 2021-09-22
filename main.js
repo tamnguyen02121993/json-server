@@ -27,7 +27,6 @@ server.use((req, res, next) => {
 
 // In this example, returned resources will be wrapped in a body property
 router.render = (req, res) => {
-    console.log(req);
     const headers = res.getHeaders();
     const totalCountHeader = headers['x-total-count'];
     if (req.method === 'GET' && totalCountHeader) {
