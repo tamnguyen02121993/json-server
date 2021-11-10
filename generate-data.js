@@ -49,14 +49,54 @@ const generateStudents = (n, cities) => {
     });
     return students;
 }
+const generateAuthors = (n) => {
+    const authors = [];
+    if (n <= 0) return authors;
+
+    Array.from(new Array(n)).forEach(() => {
+        authors.push({
+            id: faker.datatype.uuid(),
+            name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+            summary: faker.lorem.text(),
+            avatar: faker.image.avatar(),
+            createdAt: Date.now(),
+            updatedAt: Date.now(),
+        })
+    })
+
+    return authors;
+}
+
+const generatePosts = (n, authors) => {
+    const posts = [];
+    if (n <= 0) return posts;
+
+    Array.from(new Array(n)).forEach(() => {
+        const randomNumber = Math.random();
+        const authorIndex = Math.floor(randomNumber * authors.length);
+        posts.push({
+            id: faker.datatype.uuid(),
+            title: faker.lorem.lines(1),
+            description: faker.lorem.paragraph(5),
+            author: authors[authorIndex].id,
+            createdAt: Date.now(),
+            updatedAt: Date.now(),
+        });
+    });
+    return posts;
+}
 
 // Generate data
 (() => {
     const cities = generateCities(20);
     const students = generateStudents(200, cities);
+    const authors = generateAuthors(50);
+    const posts = generatePosts(1000, authors);
     const db = {
         cities,
         students,
+        authors,
+        posts
     }
 
     // Write file
